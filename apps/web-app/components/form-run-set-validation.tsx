@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 // import { filterTransactionsUsingSmartContractSet, isEVMStatePassingSetValidation, recursiveSetResourceFetching } from '@web3-sets/runtime-engine'
-import { EVMState, getAllChainIdsFromSet, runtime } from '@web3-sets/runtime-engine-js'
+import { EVMState, getAllChainIdsFromSet, runtime } from '@web3-sets/evm-runtime-js'
 import { useForm } from 'react-hook-form'
 import { useAccount, useNetwork, useProvider } from 'wagmi'
 import * as yup from 'yup'

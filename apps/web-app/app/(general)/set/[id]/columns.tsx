@@ -1,7 +1,7 @@
 'use client'
 import { ColumnDef } from '@tanstack/react-table'
 import etherscanLink from '@web3-sets/etherscan-link'
-import { ActionObserver } from '@web3-sets/runtime-engine-js'
+import { ActionObserver } from '@web3-sets/evm-runtime-js'
 
 export const columnsActionObservers: ColumnDef<ActionObserver>[] = [
   {
