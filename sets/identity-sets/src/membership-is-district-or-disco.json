@@ -21,7 +21,7 @@
       {
         "id": "condition:member:district",
         "eid": "district:credential:membership",
-        "operations": ["issuedBy", "is"],
+        "operations": ["issuedBy"],
         "args": [
             ["did:web:districtlabs.com"]
         ]
@@ -29,7 +29,7 @@
       {
         "id": "condition:member:disco",
         "eid": "district:credential:membership",
-        "operations": ["issuedBy", "is"],
+        "operations": ["issuedBy"],
         "args": [
             ["did:web:disco.xyz"]
         ]

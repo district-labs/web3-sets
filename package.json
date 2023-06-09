@@ -17,9 +17,6 @@
 	  "turbo": "latest"
 	},
 	"packageManager": "pnpm@8.1.0",
-	"workspaces": [
-	  "apps/*"
-	],
 	"pnpm": {
 	  "overrides": {
 		"wagmi": "0.12.2"

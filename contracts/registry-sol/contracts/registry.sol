@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
 
-contract Registry {
+contract IdentifierRegistry {
 
-    string[] public dids;
+    string[] public identifiers;
 
     constructor() {}
 
@@ -12,11 +12,11 @@ contract Registry {
     /* ===================================================================================== */
 
     function list() external view returns (string[] memory) {
-        return dids;
+        return identifiers;
     }
 
     function addDid(string memory did) external returns (bool) {
-        dids.push(did);
+        identifiers.push(did);
         return true;
     }
 
