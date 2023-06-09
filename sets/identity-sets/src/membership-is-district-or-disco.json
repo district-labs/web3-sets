@@ -23,7 +23,7 @@
         "eid": "district:credential:membership",
         "operations": ["issuedBy", "is"],
         "args": [
-            ["did:web:districtlabs.com"],
+            ["did:web:districtlabs.com"]
         ]
       },
       {
@@ -31,7 +31,7 @@
         "eid": "district:credential:membership",
         "operations": ["issuedBy", "is"],
         "args": [
-            ["did:web:disco.xyz"],
+            ["did:web:disco.xyz"]
         ]
       } 
     ],
