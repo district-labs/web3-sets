@@ -1,8 +1,8 @@
 {
    "$schema": "http://json-schema.org/draft-07/schema#",
    "$id": "https://github.com/web3-sets/lab/blob/main/schemas/schema-smart-contract/src/schema.evm.json",
-   "title": "Web3 EVM Entity Set Schema",
-   "description": "An EVM set schema for Web3 Set Theory protocol.",
+   "title": "Identity Set Schema",
+   "description": "An set schema for mapping decentralized identifiers, registries and verifiable credentials.",
    "type": "object",
    "additionalProperties": true,
    "required": ["id", "name", "object", "version", "conditions", "entities", "rules"],
@@ -13,11 +13,11 @@
      "name": {
        "type": "string",
        "description": "Name of the set.",
-       "examples": ["Basic Smart Contract Set"]
+       "examples": ["Identity Set"]
      },
      "object": {
        "type": "string",
-       "pattern": "^set:evm$"
+       "pattern": "^set:identity$"
      },
      "version": {
        "$ref": "#/definitions/Version"
@@ -31,7 +31,7 @@
          "minLength": 1,
          "maxLength": 20,
          "pattern": "^[\\w ]+$",
-         "examples": ["defi", "swap", "deposit"]
+         "examples": ["attendance", "education"]
        },
        "maxItems": 20,
        "uniqueItems": true

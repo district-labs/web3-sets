@@ -1,3 +1,3 @@
-import SmartContractSetsSchema from './schema.evm.json'
+import Identity from './schema.identity.json'
 
-export { SmartContractSetsSchema}
+export { Identity }
