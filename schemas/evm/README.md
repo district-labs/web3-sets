@@ -1,21 +1,4 @@
-# EVM Schema | Web3 Sets
-
-![CI](https://github.com/web3-sets/schema/actions/workflows/main.yml/badge.svg)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
-
-## 💾 Installation
-
-```sh
-pnpm add @web3-sets/schema
-```
-
-```sh
-yarn add @web3-sets/schema
-```
-
-```sh
-git clone https://github.com/web3-sets/schema
-```
+# Web3Set::EVM
 
 ## 🔗 &nbsp;Entities
 

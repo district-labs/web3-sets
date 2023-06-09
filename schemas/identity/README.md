@@ -1,5 +1,8 @@
 # Web3Set::Identity
 
+![CI](https://github.com/web3-sets/identity-schema/actions/workflows/main.yml/badge.svg)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+
 The Identity Web3 Set schema describes how to formally request [verifiable presentations](https://www.w3.org/TR/vc-data-model/#dfn-verifiable-presentations) from users.
 
 Verifiable presentations are used to request 1 or more verifiable credentials from a user.

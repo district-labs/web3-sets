@@ -1,3 +1,3 @@
-import Identity from './schema.identity.json'
+import IdentitySetSchema from './schema.identity.json'
 
-export { Identity }
+export { IdentitySetSchema as Identity }
