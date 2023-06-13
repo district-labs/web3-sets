@@ -1,98 +1,19 @@
 # Web3Set::Identity
 
-![CI](https://github.com/web3-sets/identity-schema/actions/workflows/main.yml/badge.svg)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
-The Identity Web3 Set schema describes how to formally request [verifiable presentations](https://www.w3.org/TR/vc-data-model/#dfn-verifiable-presentations) from users.
+The `Web3Set::Identity` schema is used to formally describe relationships between verifiable credentials, decentralized identifiers and public key registries.
 
-Verifiable presentations are used to request 1 or more verifiable credentials from a user.
+**Documentation**
+- [Entities](docs/entities)
+- [Operators](docs/operators)
 
-An Identity set describes what verifiable credentials and under what circumstances are required to meet certain conditions, and how they can generate a verifiable presentation that will meet this conditions.
+## Why
 
-## Entities
-Multiple entities are used in the set schema.
+A benefit of the schema is being able to request [verifiable presentations](https://www.w3.org/TR/vc-data-model/#dfn-verifiable-presentations) from users using a set as an indicator for what credentials and issuers will be accepted.
 
-- Verifiable Credential
-- Decentralized Identifier
-- Decentralized Identifier Registry
+For example to purchase a ticket for a special Ethereum Developer event I have to present at-least 1 Proof of Attendance verifiable credential from a ETHGlobal hackathon.
 
-The `Entities` are referenced in multiple location of the set schema. Both as a referencle `Entity` object and also as `Condition` arguments. 
+Another benefit is describing complex access control systems using distributed database technologies.
 
-### Type::VerifiableCredential
-```json
-{
-    "type":"credential",
-    "id": "disco:credential:gm",
-    "name": "GM Credential",
-    "schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/GMCredential/1-0-0.json",
-}
-```
-
-### Type::DecentralizedIdentifier
-```json
-"conditions": [
-    {
-        "id": "condition:issuance",
-        "eid": "disco:credential:disconaut",
-        "operations": ["issuedBy"],
-        "args": [
-            ["did:3:kjzl6cwe1jw14bfc93dsmejffll3j687kpq3te8ntmcjb98erxj9x8mdrdompf6"]
-        ]
-    } 
-]
-```
-
-### Type::DecentralizedIdentifierRegistry
-```json
-"conditions": [
-    {
-        "id": "condition:issuance",
-        "eid": "disco:credential:disconaut",
-        "operations": ["issuedByOneOf"],
-        "args": [
-            ["registry:eip155:10:v0:0x0000000000000000000000000000000000000000"]
-        ]
-    } 
-]
-```
-
-## Conditions
-
-The Web3Set::Identity schema `Conditions` define how an `Entity` should behave.
-
-### Type::VerifiableCredential
-
-- Who issued the verifiable credential? 
-- When was the credential issued? 
-- When will the credential expire?
-- Does it contain a specific value? 
-- Does it contain a range of potential values?
-
-#### Operations & Arguments
-```
-issuedBy(DID | DIDRegistry)
-issuedByOneOf([DID] | DIDRegistry)
-issuedBefore(Number)
-issuedAfter(Number)
-expirationBefore(Number)
-expirationAfter(Number)
-is(key:String, operator: Operator, value: String | Number)
-isOneOf(key:String, operator: [Operator], value: [String | Number])
-```
-
-### Type::DecentralizedIdentifier
-Coming soon.
-
-### Type::DecentralizedIdentifierRegistry
-Coming soon.
-
-## Rules
-
-### Operations & Arguments
-
-```
-all([ConditionId]) - All conditions listed must be satisfied.
-oneOf([ConditionId]) - One of the conditions listed must be satisfied.
-range([[ConditionIdOne], [ConditionIdTwo, ConditionIdThree]] ) - One of the conditions listed must be satisfied.
-count([ConditionId], [Number]) - Number of credentials that must be presented i.e. 50 GMs
-```
+For example I want to give my community a special privilege and they can qualify with Proof of Mint verifiable credential for the PoolTogether Pooly or Zerion Gensis NFTs.

@@ -33,25 +33,25 @@
       {
         "id": "condition:member:district",
         "eid": "disco:credential:membership",
-        "operations": ["issuedBy", "is"],
+        "operations": ["issuedBy"],
         "args": [
-            ["did:web:districtlabs.com"],
+            ["did:web:districtlabs.com"]
         ]
       },
       {
         "id": "condition:ticket:district-disco-party",
         "eid": "disco:credential:ticket",
-        "operations": ["issuedBy", "is"],
+        "operations": ["issuedBy"],
         "args": [
-            ["did:web:disco.xyz"],
+            ["did:web:disco.xyz"]
         ]
       },
       {
         "id": "condition:ticket:district-vip",
         "eid": "disco:credential:vip",
-        "operations": ["issuedBy", "is"],
+        "operations": ["issuedBy"],
         "args": [
-            ["did:web:districtlabs.com"],
+            ["did:web:districtlabs.com"]
         ]
       } 
     ],
@@ -61,7 +61,7 @@
         "operations": ["range"],
         "args": [
             [
-                ["condition:member:district", "condition:ticket:district-disco-party"]
+                ["condition:member:district", "condition:ticket:district-disco-party"],
                 ["condition:ticket:district-vip"]
             ]
         ]

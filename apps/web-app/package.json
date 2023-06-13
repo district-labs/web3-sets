@@ -72,7 +72,7 @@
     "@web3-sets/etherscan-link": "^0.0.0",
     "@web3-sets/evm-runtime-js": "workspace:0.0.0-beta.0",
     "@web3-sets/evm-schema": "workspace:0.0.0-beta.0",
-    "@web3-sets/smart-contract-sets": "workspace:0.0.0-beta.0",
+    "@web3-sets/evm-sets": "workspace:0.0.0-beta.0",
     "ajv": "^8.6.1",
     "axios": "^1.2.2",
     "class-variance-authority": "^0.4.0",

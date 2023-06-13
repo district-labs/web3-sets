@@ -1,4 +1,4 @@
-import { DiscoDistrictSet, PoolTogetherOptimismDepositSet, RainbowFiniliarSet, StandWithCryptoSet } from '@web3-sets/smart-contract-sets'
+import { DiscoDistrictSet, PoolTogetherOptimismDepositSet, RainbowFiniliarSet, StandWithCryptoSet } from '@web3-sets/evm-sets'
 
 export const setDatabase = [
   {

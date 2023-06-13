@@ -45,8 +45,7 @@
       "id": "rule.complete",
       "cid": ["condition:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:depositTo:gte:100000000"],
       "operations": ["isComplete"],
-      "args": [[true]],
-      "range": [100]
+      "args": [[true]]
     }
   ]
 }

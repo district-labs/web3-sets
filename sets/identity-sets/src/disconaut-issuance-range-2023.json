@@ -14,7 +14,7 @@
         "type":"credential",
         "id": "disco:credential:disconaut",
         "name": "Official Disconaut Credential",
-        "schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/OfficialDisconautCredential/1-0-0.json",
+        "schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/OfficialDisconautCredential/1-0-0.json"
       }
     ],
     "conditions": [
