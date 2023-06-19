@@ -5,7 +5,7 @@ import { ActionObserver } from '@web3-sets/evm-runtime-js'
 
 export const columnsActionObservers: ColumnDef<ActionObserver>[] = [
   {
-    accessorKey: 'isSuccess',
+    accessorKey: 'rid',
     header: 'Status',
   },
   {

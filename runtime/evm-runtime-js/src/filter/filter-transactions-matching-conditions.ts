@@ -27,12 +27,12 @@ export function filterTransactionsMatchingConditions({
     .map((tx: TransactionParsed) => {
       if (
         tx?.args &&
-        condition?.args &&
+        condition?.values &&
         tx.functionName === conditionFunctionName
       ) {
         const comparator = compareConditionArgumentToTransactionArgument(
           tx,
-          condition.args,
+          condition.values,
         )
         return {
           isSuccess: comparator.isComplete,

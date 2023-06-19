@@ -10,4 +10,8 @@ For example the `oneOf` operation can be used to declare the set is valid whethe
 all([ConditionId]) - All conditions listed must be satisfied.
 oneOf([ConditionId]) - One of the conditions listed must be satisfied.
 range([[ConditionIdOne], [ConditionIdTwo, ConditionIdThree]] ) - One of the conditions listed must be satisfied.
+beforeBlock(Number, [ConditionId]) - Before an EVM block
+afterBlock(Number,[ConditionId]) - After an EVM block
+beforeTimestamp(Epoch. [ConditionId]) - Before an epoch timestamp
+afterTimestamp(Epoch, [ConditionId]) - After an epoch timestamp
 ```

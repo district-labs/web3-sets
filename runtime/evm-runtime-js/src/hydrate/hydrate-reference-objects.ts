@@ -1,4 +1,4 @@
-import { SmartContractSet } from '../types/core'
+import { SmartContractSet } from '../types/input'
 import { fetchAbiFromUri } from './fetch-abi-from-uri'
 
 /**

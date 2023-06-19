@@ -1,79 +1,55 @@
+import { isConditionMet } from './is-condition-met'
+import { Analysis, SmartContractSetHydrated } from './types'
 import {
-  Analysis,
-  Condition,
-  EntityHydrated,
-  SmartContractSetHydrated,
-} from './types'
+  checkIfAllRuleOpereationsAreSuccess,
+  findConditionMatches,
+} from './utils'
 
-export function runRules(set: SmartContractSetHydrated): Analysis {
+export function applyRuleOperations(set: SmartContractSetHydrated): Analysis {
   const newSet = { ...set }
-  const length = set.rules.length
-  const matches: any = []
 
-  for (let index = 0; index < length; index++) {
+  const matches: any = []
+  const results: any = []
+
+  for (let index = 0; index < set.rules.length; index++) {
     const rule = newSet.rules[index]
 
+    const ruleAnalysis = {
+      id: rule.id,
+      isSuccess: false,
+      matches: [],
+    }
     // Iterate over the operations in the rule.
     // TODO: Add support for multiple operations.
-    rule.operations.forEach((operation, index: number) => {
+    const status = rule.operations.map((operation: string, index: number) => {
       switch (operation) {
-        case 'isComplete': {
-          const cid = rule.cid[index]
+        case 'all': {
+          const transactionsMatching: any = []
+          for (let i = 0; i < rule.args[index].length; i++) {
+            const conditions = rule.args[index]?.map((cid: string) =>
+              isConditionMet(cid, set),
+            )
+            const transactions = rule.args[index]?.map((cid: string) =>
+              findConditionMatches(cid, set),
+            )
+            transactions.flat().forEach((transaction: any) => {
+              if (transaction !== null) {
+                transactionsMatching.push({
+                  reference: findTransactionReference(
+                    transaction.hash,
+                    set.entities[set.cidToEntityIndex[transaction.cid]],
+                  ),
+                  rid: rule.id,
+                  ...transaction,
+                })
+              }
+            })
 
-          const transactions: any = []
-          // Find the Entity that has the condition.
-          const entityMatching = newSet.entities.find(
-            (entity: EntityHydrated) => {
-              return entity.conditions.find((condition: Condition) => {
-                return condition.id === cid
-              })
-            },
-          )
-
-          let isComplete = true
-          while (isComplete) {
-            // If there are no transactions matches in the Entity
-            // we can assume that the condition is not complete.
-            if (entityMatching?.matches?.transactions?.length === 0) {
-              isComplete = false
-            }
-
-            // Filters the matches for the current condition.
-            // If there are no matches, we can assume that the condition
-            // is not complete.
-            let completeCounter = 0
-            entityMatching?.matches?.transactions
-              ?.filter((transaction: any) => transaction.cid === cid)
-              .forEach((transaction: any) => {
-                if (transaction.isSuccess === true) {
-                  transactions.push({
-                    chainId: entityMatching.chainId,
-                    reference: findTransactionReference(
-                      transaction.hash,
-                      entityMatching,
-                    ),
-                    rid: rule.id,
-                    ...transaction,
-                  })
-                  completeCounter = completeCounter + 1
-                }
-              })
-            // TODO: Add support for ranges.
-            // How? Not sure yet, but let's do something clever.
-            if (completeCounter === 0) {
-              isComplete = false
-            }
-
-            break
+            // @ts-ignore
+            ruleAnalysis.matches.push(transactions)
+            return conditions.every((condition: any) => condition === true)
           }
-          matches.push({
-            id: rule.id, // Rule ID
-            cid: cid, // Condition ID
-            isSuccess: isComplete,
-            matches: transactions,
-          })
         }
-
         break
         case 'beforeTimestamp':
           break
@@ -87,32 +63,26 @@ export function runRules(set: SmartContractSetHydrated): Analysis {
           break
       }
     })
+    matches.push({
+      id: rule.id,
+      isSuccess: isComplete(status),
+      data: ruleAnalysis,
+    })
   }
 
   return {
-    isSuccess: isComplete(matches),
+    isSuccess: checkIfAllRuleOpereationsAreSuccess(results),
     data: matches,
   }
 }
 
-function isComplete(matches: any): boolean {
-  const every = matches.every((match: any) => match.isSuccess === true)
-  return every
+function isComplete(rule: any): boolean {
+  return rule.every((match: any) => match === true)
 }
 
 function findTransactionReference(hash: string, entity: any): any {
   const match = entity?.state?.raw?.transactions?.filter(
     (transaction: any) => transaction.hash === hash,
-  )
-  if (match.length === 0) {
-    return null
-  }
-  return match[0]
-}
-
-function findChainIdReference(cid: string, entity: any): any {
-  const match = entity?.state?.raw?.chains?.filter(
-    (chain: any) => chain.cid === cid,
   )
   if (match.length === 0) {
     return null

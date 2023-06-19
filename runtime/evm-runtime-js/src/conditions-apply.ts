@@ -1,7 +1,7 @@
 import { filterTransactionsMatchingConditions } from './filter/filter-transactions-matching-conditions'
 import { SmartContractSetHydrated } from './types'
 
-export function conditionsApply(
+export function applyConditionOperations(
   set: SmartContractSetHydrated,
 ): SmartContractSetHydrated {
   const newSet = { ...set }
@@ -12,6 +12,9 @@ export function conditionsApply(
       (condition) => condition.type === 'transaction',
     )
 
+    // ----------------------------------------------
+    // Transactions
+    // ----------------------------------------------
     const totalMatches = transactionConditions
       .map((condition) => {
         const matches = filterTransactionsMatchingConditions({
@@ -23,5 +26,6 @@ export function conditionsApply(
       .flatMap((matches) => matches)
     entity.matches.transactions = totalMatches
   }
+
   return newSet
 }
