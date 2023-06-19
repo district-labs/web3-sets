@@ -1,5 +1,6 @@
 import { EntityHydrated, SmartContractSetHydrated } from '../types'
-import { Condition, SmartContractSet } from '../types/core'
+import { Condition, SmartContractSet } from '../types/input'
+import { findObjectIndex } from '../utils'
 import { Client } from 'viem'
 
 /**
@@ -10,9 +11,23 @@ export function hydrateSetBase(
   conditions: Condition[],
   clients: Client[],
 ): SmartContractSetHydrated {
-  const length = set.entities.length
-  const newSet = { rules: set.rules, entities: [] as EntityHydrated[], clients }
-  for (let index = 0; index < length; index++) {
+  const newSet: SmartContractSetHydrated = {
+    rules: set.rules,
+    entities: [] as EntityHydrated[],
+    clients,
+    cidToEntityIndex: {},
+  }
+
+  for (let index = 0; index < set.conditions.length; index++) {
+    // @ts-ignore
+    newSet.cidToEntityIndex[set.conditions[index].id] = findObjectIndex(
+      set.entities,
+      'address',
+      set.conditions[index].eid,
+    )
+  }
+
+  for (let index = 0; index < set.entities.length; index++) {
     newSet.entities.push({
       name: set.entities[index].name,
       address: set.entities[index].address,
@@ -24,13 +39,16 @@ export function hydrateSetBase(
       state: {
         raw: {
           transactions: [],
+          logs: [],
         },
         parsed: {
           transactions: [],
+          logs: [],
         },
       },
       matches: {
         transactions: [],
+        logs: [],
       },
     } as EntityHydrated)
   }

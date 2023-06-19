@@ -1,0 +1,8 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/runtime/evm/inputs": "pages/runtime/evm/inputs.js",
+  "/overview/set-theory": "pages/overview/set-theory.js",
+  "/overview/use-cases": "pages/overview/use-cases.js"
+}

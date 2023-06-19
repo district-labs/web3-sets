@@ -40,7 +40,7 @@ export function FormRunSetValidation({ schema }: FormRunSetValidationProps) {
     const chainIds = getAllChainIdsFromSet(schema)
     for (const chainId of chainIds) {
       const transactionsChains: any = await etherscanAccountTransactions(chainId, data.account)
-      transactions = [...transactions, ...transactionsChains]
+      transactions = [...transactions, ...transactionsChains || []]
     }
     const state = {
       logs,

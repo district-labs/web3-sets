@@ -1,17 +1,20 @@
-import { SmartContractSet } from './types/core'
 import { EVMState } from './types/evm'
+import { SmartContractSet } from './types/input'
 
 import { Client } from 'viem'
 
-import { conditionsApply } from './conditions-apply'
+import { applyConditionOperations } from './conditions-apply'
 import { hydrateSet } from './hydrate/hydrate-set'
 import { injectState } from './inject-state'
-import { runRules } from './run-rules'
+import { applyRuleOperations } from './run-rules'
 
 interface RuntimeInput {
   set: SmartContractSet
   state: EVMState
   clients: Client[]
+  args: {
+    [key: string]: string | number
+  }
 }
 
 interface RuntimeOutput {
@@ -21,25 +24,28 @@ interface RuntimeOutput {
 
 /**
  * @name Runtime
- * @description Runtime is the main entrypoint for runtime engine. It is responsible for:
- * 1. Fetch externally referenced data objects (e.g. ABI files from IPFS)
- * 2. Injecting EVM state into corresponding Entity smart contract objects
- * 3. Applying conditions to Entity smart contract objects EVM state
- * 4. Apply rules to Entity smart contract objects EVM state and conditions
+ * @description Runtime is the main entrypoint for the EVM runtime engine.
  */
 export async function runtime({
   set,
   state,
   clients,
+  args,
 }: RuntimeInput): Promise<RuntimeOutput | void> {
   try {
-    const hydrated = await hydrateSet(set, clients)
+    // 1. Fetch externally referenced data objects (e.g. ABI files from IPFS)
+    // 2. Inject the arguments into the condition and rule operation inputs
+    const setHydrated = await hydrateSet(set, clients, args)
+    // 3. Inject EVM state into linked Entity smart contract objects
     const injected = injectState({
-      set: hydrated,
+      set: setHydrated,
       state,
     })
-    const conditioned = conditionsApply(injected)
-    const analysis = runRules(conditioned)
+    // 4. Apply conditions to Entity smart contract objects EVM state
+    const conditioned = applyConditionOperations(injected)
+    // 5. Apply rules to Entity smart contract objects EVM state and conditions
+    const analysis = applyRuleOperations(conditioned)
+    return analysis
     return {
       set: conditioned,
       analysis,
