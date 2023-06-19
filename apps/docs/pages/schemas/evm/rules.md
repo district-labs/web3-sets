@@ -21,10 +21,12 @@ type Rule = {
 - range([[ConditionOrRuleIdOne], [ConditionOrRuleIdTwo, ConditionOrRuleIdThree] ) - One of the conditions listed must be satisfied.
 
 **Operations only applicable to conditions.**
-- beforeBlock(Number, [ConditionId])
-- afterBlock(Number, [ConditionId])
-- beforeTimestamp(String, [ConditionId])
-- afterTimestamp(String, [ConditionId])
+- beforeBlock(Number, [ConditionId...])
+- afterBlock(Number, [ConditionId...])
+- betweenBlocks(Number, Number, [ConditionId...])
+- beforeTimestamp(String, [ConditionId...])
+- afterTimestamp(String, [ConditionId...])
+- betweenTimestamp(String, String, [ConditionId...])
 
 ```ts
 type RuleOperation = {

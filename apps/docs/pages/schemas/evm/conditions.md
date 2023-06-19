@@ -21,14 +21,17 @@ type Condition = {
 
 - beforeBlock(Number)
 - afterBlock(Number)
+- betweenBlocks(Number, Number)
 - beforeTimestamp(String)
 - afterTimestamp(String)
+- betweenTimestamp(String, String)
 - to(Address)
 - from(Address)
-- nonce(Comparator, Number)
-- value(Comparator, Number)
-- observe(key:String, comparator: Comparator, value: String | Number)
-- observeOneOf([(key:String, comparator: Operator, value: String | Number)])
+- nonce(Condition, Number)
+- value(Condition, Number)
+- observe(key:String, operator: Operator, value: String | Number)
+- observeOneOf([(key:String, operator: Operator, value: String | Number)])
+
 
 ```ts
 type ConditionOperation = {

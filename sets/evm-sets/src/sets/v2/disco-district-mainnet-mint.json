@@ -1,9 +1,9 @@
 {
-	"id": "set:shield:mainnet:mint",
+	"id": "set:disco-district",
 	"object": "set:evm",
-	"name": "Mint Disco NFT by District",
-	"description": "Mint a Disco NFT from District Labs",
-	"keywords": ["delegatable", "disco", "district-labs"],
+	"name": "Mint Disco District Collectible",
+	"description": "Mint a Disco District collectible",
+	"keywords": ["delegatable", "disco", "district"],
 	"version": {
 		"major": 0,
 		"minor": 0,

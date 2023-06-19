@@ -12,8 +12,10 @@ They condition and rule operations are responsible for "constraining" what state
 
 - beforeBlock(Number)
 - afterBlock(Number)
+- betweenBlocks(Number, Number)
 - beforeTimestamp(String)
 - afterTimestamp(String)
+- betweenTimestamp(String, String)
 - to(Address)
 - from(Address)
 - nonce(Condition, Number)
@@ -29,10 +31,12 @@ They condition and rule operations are responsible for "constraining" what state
 - range([[ConditionOrRuleIdOne], [ConditionOrRuleIdTwo, ConditionOrRuleIdThree] ) - One of the conditions listed must be satisfied.
 
 **Operations applied to conditions.**
-- beforeBlock(Number, [ConditionId])receipt
-- afterBlock(Number, [ConditionId])
-- beforeTimestamp(String, [ConditionId])
-- afterTimestamp(String, [ConditionId])
+- beforeBlock(Number, [ConditionId...])
+- afterBlock(Number, [ConditionId...])
+- betweenBlocks(Number, Number, [ConditionId...])
+- beforeTimestamp(String, [ConditionId...])
+- afterTimestamp(String, [ConditionId...])
+- betweenTimestamp(String, String, [ConditionId...])
 
 ## Identity
 
