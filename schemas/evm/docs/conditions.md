@@ -2,8 +2,8 @@
 
 An condition operator is a specific logical action or process that can be applied to an `Entity` object.
 
-## Types
-Since it's possible to verify multiple state artifacts for accounts and smart contracts, an entity condition a `type` must be defined.
+## Type (type)
+Since it's possible to verify multiple state artifacts for accounts and smart contracts, an entity condition `type` must be defined.
 
 - transaction
 - log
@@ -11,11 +11,28 @@ Since it's possible to verify multiple state artifacts for accounts and smart co
 - archive_read
 - storage_proof
 
+## Operations (operations)
+
+- beforeBlock
+- afterBlock
+- beforeTimestamp
+- afterTimestamp
+
+## Argument (args)
+
+## Values
+
 ### Transaction
 
 The `transaction` condition type validates transaction input data.
 
-Example of defining a transaction read operator on a PoolTogether V4 deposit.
+#### Unique Operators
+
+```
+value(Operator, BigNumber)
+```
+
+Example of defining a basic transaction condition on a PoolTogether V4 deposit.
 ```json
 "conditions": [
     {
@@ -25,6 +42,35 @@ Example of defining a transaction read operator on a PoolTogether V4 deposit.
       "type": "transaction",
       "signature": "depositTo(address,uint256)",
       "args": [
+        {
+          "index": 1,
+          "type": "bignumber",
+          "operator": "gte",
+          "value": "10000000"
+        }
+      ]
+    }
+],
+```
+
+Example of defining an advanced transaction condition with operations on a PoolTogether V4 deposit.
+```json
+"conditions": [
+    {
+      "id": "condition:pt:v4:deposit:usdc",
+      "eid": "0x79bc8bd53244bc8a9c8c27509a2d573650a83373",
+      "name": "PoolTogether Prize Pool minimum deposit of 10 USDC",
+      "type": "transaction",
+      "signature": "depositTo(address,uint256)",
+      "operations": ["afterBlock", "beforeBlock", "value",],
+      "args": [[420], [999999999999], ["gte", 0]],
+      "values": [
+        {
+          "index": 0,
+          "type": "address",
+          "operator": "eq",
+          "value": "$ADDRESS"
+        },
         {
           "index": 1,
           "type": "bignumber",
@@ -48,7 +94,7 @@ Example of defining a log read operator on a ERC20 Transfer event emitted during
       "name": "ERC20 Transfer event sending 1 ETH minimum to Vitalik",
       "type": "log",
       "signature": "Transfer(address indexed from, address indexed to, uint tokens)",
-      "args": [
+      "values": [
         {
           "index": 1,
           "type": "address",
@@ -78,7 +124,7 @@ The `read` condition type read blockchain state at the current block.
       "type": "balanceOf",
       "signature": "balanceOf(address)",
       "inputs": ["ACCOUNT_ADDRESS"],
-      "args": [
+      "values": [
         {
           "index": 0,
           "type": "uint256",
@@ -102,7 +148,7 @@ The `archive_read` condition type validates state of blockchain at a specific bl
       "type": "balanceOf",
       "signature": "balanceOf(address)",
       "input": [["ACCOUNT_ADDRESS"], 4206982103],
-      "args": [
+      "values": [
         {
           "index": 0,
           "type": "uint256",
