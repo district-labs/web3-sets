@@ -2,12 +2,6 @@
 
 Conditions are collections of operations applied to a specific [Entity](/architecture/entities) to measure a desired behavior.
 
-- id - unique identifier
-- eid - entity identifier
-- type - artifact type (i.e. transaction or log)
-- signature - artifact identifier
-- operations
-
 ```ts
 type Condition = {
   id: string;
@@ -31,6 +25,15 @@ type Condition = {
 - value(Condition, Number)
 - observe(key:String, operator: Operator, value: String | Number)
 - observeOneOf([(key:String, operator: Operator, value: String | Number)])
+
+### ID
+Unique identifier using the a URN pattern (e.x. condition:identification:property).
+
+### Entity ID (eid)
+Target entity id to run condition condition operations on.
+
+### Operations
+Logic branch operations for conditions and other rules.
 
 
 ```ts

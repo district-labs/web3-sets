@@ -29,7 +29,7 @@
 					]
 				},
 				{
-					"method": "is",
+					"method": "observe",
 					"args": ["credentialSubject.membershipLevel", ">=", "5"]
 				}
 			]

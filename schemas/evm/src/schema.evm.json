@@ -235,7 +235,7 @@
         },
         "operations": {
           "type": "array",
-          "description": "Operations applied to target entity state artifacts",
+          "description": "Operations applied to conditions and other rules",
           "items": {
             "$ref": "#/definitions/RuleOperation"
           }

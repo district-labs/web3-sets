@@ -21,7 +21,7 @@ Target entity id to run condition condition operations on.
 Logic branch operations for conditions and other rules.
 
 ## How It Works
-A smart contract entity might have multiple methods which can be executed by an external account entity.
+A smart contract entity might have multiple methods which can be executed.
 
 ```json
 {
@@ -74,7 +74,7 @@ For brevities sake let's example the `credential` Entity will conditions applied
 {
     "entities": [
 		{
-			"type": "credential",
+			
 			"id": "district:credential:membership",
 			"name": "Membership",
 			"schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/MembershipCredential/1-0-0.json"
@@ -92,7 +92,7 @@ For brevities sake let's example the `credential` Entity will conditions applied
 					]
 				},
 				{
-					"method": "is",
+					"method": "observe",
 					"args": ["credentialSubject.membershipLevel", ">=", "5"]
 				}
 			]
@@ -101,7 +101,7 @@ For brevities sake let's example the `credential` Entity will conditions applied
 }
 ```
 
-In the example above The `credential` Entity using the `MembershipCredential` schema has two conditionals applied to the verifiable credential we expect to be available during runtime.
+In the example above The `credential` Entity using the `MembershipCredential` schema has two condition operations applied to the state artifact we expect to be available during runtime.
 
 For context here are the sub-fields available the MembershipCredential credential.
 
@@ -117,6 +117,4 @@ properties: {
 },
 ```
 
-The second condition using the `is` method is stating the verifiable credential that will be available at runtime is expected to have a membership level equal to or above 5.
-
-The `membershipLevel` is arbitrary in this example, but the same concept can be applied to any field on any verifiable credential.
+The second condition using the `observe` method is stating the verifiable credential that will be available at runtime is expected to have a membership level equal to or above 5.

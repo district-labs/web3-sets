@@ -30,7 +30,7 @@ Logic branch operations for conditions and other rules
 {
     "entities": [
 		{
-			"type": "credential",
+			
 			"id": "disco:credential:gm",
 			"name": "GM Credential",
 			"schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/GMCredential/1-0-0.json"
@@ -76,19 +76,19 @@ Simplified set statement `Membership + Ticket || Verified Identity Pass = True`
 ```json
     "entities": [
 		{
-			"type": "credential",
+			
 			"id": "disco:credential:membership",
 			"name": "Membership",
 			"schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/MembershipCredential/1-0-0.json"
 		},
 		{
-			"type": "credential",
+			
 			"id": "disco:credential:ticket",
 			"name": "Ticket",
 			"schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/TicketCredential/1-0-0.json"
 		},
 		{
-			"type": "credential",
+			
 			"id": "disco:credential:vip",
 			"name": "VIP (Verified Identity Pass)",
 			"schema": "https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/VerifiedIdentityPass/1-0-0.json"
