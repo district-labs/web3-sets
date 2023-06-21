@@ -11,6 +11,7 @@ export const Log = z.object({
   transactionHash: z.string(),
   logIndex: z.number(),
 })
+
 export type Log = z.infer<typeof Log>
 
 export const LogParsed = Log.extend({

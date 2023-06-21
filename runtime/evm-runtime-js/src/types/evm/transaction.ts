@@ -13,9 +13,8 @@ export const Transaction = z.object({
 export type Transaction = z.infer<typeof Transaction>
 
 export const TransactionParsed = z.object({
-  name: z.string(),
-  signature: z.string(),
-  topic: z.string(),
+  hash: z.string(),
+  functionName: z.string(),
   args: z.unknown(),
 })
 

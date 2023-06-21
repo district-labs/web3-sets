@@ -7,7 +7,7 @@ import { z } from 'zod'
 export const RuntimeArguments = z.record(z.unknown())
 export type RuntimeArguments = z.infer<typeof RuntimeArguments>
 
-export type RuntimeInputs = {
+export type RuntimeInput = {
   set: EVMSet
   artifacts: EVMStateArtifacts
   clients?: Client[]

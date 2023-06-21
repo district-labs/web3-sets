@@ -6,7 +6,7 @@ import { z } from 'zod'
 export const EVMStateArtifacts = z.object({
   transactions: z.array(Transaction),
   receipts: z.array(TransactionReceipt),
-  log: z.array(Log),
+  logs: z.array(Log),
 })
 
 export type EVMStateArtifacts = z.infer<typeof EVMStateArtifacts>

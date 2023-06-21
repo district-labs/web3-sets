@@ -1,28 +1,36 @@
-import { LogMatch, LogParsed } from './evm/log'
-import { TransactionMatch, TransactionParsed } from './evm/transaction'
-import { TransactionReceiptParsed } from './evm/transaction-receipt'
+import { Log, LogMatch, LogParsed } from './evm/log'
+import {
+  Transaction,
+  TransactionMatch,
+  TransactionParsed,
+} from './evm/transaction'
+import {
+  TransactionReceipt,
+  TransactionReceiptMatch,
+  TransactionReceiptParsed,
+} from './evm/transaction-receipt'
 import { Condition } from './set/condition'
-import { Entity } from './set/entity'
 import { Rule } from './set/rule'
 import { Abi } from 'abitype'
-import { Address, Client, Log, Transaction, TransactionReceipt } from 'viem'
+import { Address, Client } from 'viem'
 
 type EVMArtifacts = {
   raw: {
-    transactions: Transaction
-    receipts: TransactionReceipt
-    logs: Log
+    transactions?: Transaction[]
+    receipts?: TransactionReceipt[]
+    logs?: Log[]
   }
   parsed: {
-    transactions: TransactionParsed
-    receipts: TransactionReceiptParsed
-    logs: LogParsed
+    transactions?: TransactionParsed[]
+    receipts?: TransactionReceiptParsed[]
+    logs?: LogParsed[]
   }
 }
 
 type EVMArtifactMatches = {
-  transactions: TransactionMatch
-  logs: LogMatch
+  receipts?: TransactionReceiptMatch[]
+  transactions?: TransactionMatch[]
+  logs?: LogMatch[]
 }
 
 export type EntityHydrated = {
@@ -36,7 +44,7 @@ export type EntityHydrated = {
 }
 
 export type SetHydrated = {
-  clients: Client[]
-  entities: Entity[]
-  rules: Rule
+  entities: EntityHydrated[]
+  rules: Rule[]
+  clients?: Client[]
 }
