@@ -1,7 +1,6 @@
-import { sum } from "../src/index";
+import { expect, test } from 'vitest'
 
-describe("sum", () => {
-  it("adds two numbers together", () => {
-    expect(sum(1, 1)).toEqual(2);
-  });
-});
+test('expect.soft test', () => {
+  expect.soft(1 + 1).toBe(3) // mark the test as fail and continue
+  expect.soft(1 + 2).toBe(4) // mark the test as fail and continue
+})

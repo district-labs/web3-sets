@@ -1,6 +1,7 @@
 {
   "extends": "tsconfig/base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "declaration": true,
     "declarationDir": "dist",
     "esModuleInterop": true,
@@ -12,7 +13,12 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@/*": ["./src/*"],
+      "abitype": ["./node_modules/abitype"],
+      "abitype/zod": ["./node_modules/abitype/zod"],
+    }
   },
   "exclude": ["node_modules", "dist"]
 }
