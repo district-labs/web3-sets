@@ -10,7 +10,7 @@ type Entity = {
 ```
 
 ### ID
-Unique identifier using the a URN pattern (e.x. entity:[protocol]:[version])
+Unique identifier using the URN pattern (e.x. entity:[protocol]:[version])
 
 ## How It Works
 
@@ -21,7 +21,7 @@ Resource objects like smart contracts, verifiable credentials, decentralized ide
  - decentralized identifiers 
  - public key registries
 
-In Web3 Sets each Entity is measured according to it's unique properties.
+In Web3 Sets each Entity is measured according to its unique properties.
 
 Below are examples of a smart contract and verifiable credentials entities.
 
@@ -52,7 +52,7 @@ Below are examples of a smart contract and verifiable credentials entities.
 
 As you can see each `Entity` has unique identifying properties. The properties are used to "hydrate" the entity during runtime execution.
 
-In the case of the smart contract entity hydration is characterized by fetching the ABI reference. For other entities like verifiable credential it requires triggering a selective disclosure request and obtaining credentials that will be presumed to pass validation during the runtime.
+In the case of the smart contract entity hydration is characterized by fetching the ABI reference. For other entities like verifiable credential, it requires triggering a selective disclosure request and obtaining credentials that will be presumed to pass validation during the runtime.
 
 If the Entity can be defined (measurable inputs and outputs) it can be added to a Web3 Sets schema and runtime.
 

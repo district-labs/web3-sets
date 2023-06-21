@@ -90,7 +90,7 @@ And here is an example of a condition that will correctly identify the state art
 ],
 ```
 
-During runtime the data field will be decoded and compared with the operation.
+During runtime, the data field will be decoded and compared with the operation.
 
 **Raw inputs**
 ```rust
@@ -124,4 +124,4 @@ As we can see the observe operation condition has been met.
 [1]:  42000000
 ```
 
-Since `42000000` is greater than or equal to `10000000` the operation conditional has been satisfed.
+Since `42000000` is greater than or equal to `10000000` the operation conditional has been satisfied.

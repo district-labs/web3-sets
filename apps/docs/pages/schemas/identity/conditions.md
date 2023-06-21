@@ -12,10 +12,10 @@ type Condition = {
 ```
 
 ### ID
-Unique identifier using the a URN pattern (e.x. condition:identification:property).
+Unique identifier using the URN pattern (e.x. condition:identification:property).
 
 ### Entity ID (eid)
-Target entity id to run condition condition operations on.
+Target entity id to run condition operations on.
 
 ### Operations
 Logic branch operations for conditions and other rules.
@@ -50,7 +50,7 @@ type Condition = {
 ## How It Works
 A verifiable credential artifact matching the entity schema must be presented.
 
-In the `MembershipCredential` credential, a membershipLevel field is a child of the `credentialSubject` field.
+In the `MembershipCredential` credential, a `membershipLevel` field is a child of the `credentialSubject` field.
 
 ```json
 {
@@ -74,7 +74,7 @@ In the `MembershipCredential` credential, a membershipLevel field is a child of 
 				},
 				{
 					"method": "observe",
-					"args": ["credentialSubject.membershipLevel", ">=", "5"]
+					"args": ["credentialSubject.membershipLevel", "gte", "5"]
 				}
 			]
 		}

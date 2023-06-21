@@ -1,6 +1,6 @@
 # Entities
 
-The Identity set contains a two primary entity types.
+The Identity set contains two primary entity types.
 
 **Types**
 - Data Schema (schema)
@@ -13,7 +13,7 @@ type DataSchema {
 ```
 
 ### ID
-Unique identifier using the a URN pattern (e.x. entity:identification:property).
+Unique identifier using the URN pattern (e.x. entity:identification:property).
 
 ### Schema
 Reference to a schema for generating a verifiable credential state artifact.
@@ -22,7 +22,7 @@ Reference to a schema for generating a verifiable credential state artifact.
 
 A `DataSchema` Entity describes how a `VerifiableCredential` artifact will be generated.
 
-For example the entity below contains a reference to the `GMCredential` credential schema.
+For example, the entity below contains a reference to the `GMCredential` credential schema.
 
 ```json
 "entities": [
@@ -62,8 +62,8 @@ A GMCredential state artifact (i.e. verifiable credential) will resemble the exa
 }
 ```
 
-For simplicity sake thing of Entities as describing how Artifacts will be generated. Artifacts are the objects, which contain data we can cryptographically prove.
+For simplicity's sake think of Entities as describing how Artifacts will be generated. Artifacts are the objects, which contain data we can cryptographically prove.
 
-In this instance, we know we want a verifiable credential of type GMCredential, so we reference the Entity (DataSchema), which gives us the metedata we need to accurately validate the GMCredential at runtime.
+In this instance, we know we want a verifiable credential of type GMCredential, so we reference the Entity (DataSchema), which gives us the metadata we need to accurately validate the GMCredential at runtime.
 
-Since the GMCredential only contains an `id` key in the `credentialSubject` it's relatively simple to parse. But more complex verifiable credentials require more complex validation condition and rules, depending on the type of data being requested.
+Since the GMCredential only contains an `id` key in the `credentialSubject` it's relatively simple to parse. But more complex verifiable credentials require more complex validation conditions and rules, depending on the type of data being requested.

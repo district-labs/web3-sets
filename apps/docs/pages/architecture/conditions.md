@@ -12,10 +12,10 @@ type Condition = {
 ```
 
 ### ID
-Unique identifier using the a URN pattern (e.x. condition:identification:property).
+Unique identifier using the URN pattern (e.x. condition:identification:property).
 
 ### Entity ID (eid)
-Target entity id to run condition condition operations on.
+Target entity id to run condition operations on.
 
 ### Operations
 Logic branch operations for conditions and other rules.
@@ -62,11 +62,11 @@ A smart contract entity might have multiple methods which can be executed.
 }
 ```
 
-In the above example we've applied a condition to the `PT:V4:PrizePool:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:Optimism` entity which measures a specific transaction EVM state artifact.
+In the above example, we've applied a condition to the `PT:V4:PrizePool:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:Optimism` entity which measures a specific transaction EVM state artifact.
 
-The condition specifically states a `Transaction` EVM state artifact, denoted by the `"type": "transaction"` field, calling the target entity must include the a deposit amount greater than 10 USDC.
+The condition specifically states a `Transaction` EVM state artifact, denoted by the `"type": "transaction"` field, calling the target entity must include a deposit amount greater than 10 USDC.
 
-Multiple conditions can be applied to the same entity. For example you could require both `depositTo` and `withdraw` transactions artifacts to be present before the set can be validated. In that instance it would require both the `depositTo` and `withdraw` transaction EVM state artifacts to be passed into the runtime engine.
+Multiple conditions can be applied to the same entity. For example, you could require both `depositTo` and `withdraw` transaction artifacts to be present before the set can be validated. In that instance, it would require both the `depositTo` and `withdraw` transaction EVM state artifacts to be passed into the runtime engine.
 
 For brevities sake let's example the `credential` Entity will conditions applied to state artifacts.
 
@@ -93,7 +93,7 @@ For brevities sake let's example the `credential` Entity will conditions applied
 				},
 				{
 					"method": "observe",
-					"args": ["credentialSubject.membershipLevel", ">=", "5"]
+					"args": ["credentialSubject.membershipLevel", "gte", "5"]
 				}
 			]
 		}

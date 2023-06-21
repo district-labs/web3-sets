@@ -29,7 +29,7 @@ The `Client` and `RuntimeArguments` are only required if the Set expects the run
 
 **Basic Runtime Example**
 
-The minimum arguments required to execute the runtime is a set and state artifacts.
+The minimum arguments required to execute the runtime are a set and state artifacts.
 ```rust
 runtime({
     set, 
@@ -40,7 +40,7 @@ runtime({
 **Advanced Runtime Example**
 For sets that require `reads` and `archive_read` functionality a JSON-RPC provider client is required.
 
-If a set has dynamic arguments the runtime will also require the arguments are passed during the runtime.
+If a set has dynamic arguments the runtime will also require the arguments to be passed during the runtime.
 
 ```rust
 runtime({
@@ -118,17 +118,17 @@ runtime({
 
 ### Clients (Optional)
 
-For a Javascript runtime we recommend using the [viem](https://viem.sh/) client interface.
+For a Javascript runtime, we recommend using the [viem](https://viem.sh/) client interface.
 
-For a Rust runtime we don't recommend a specific crate. Dealers choice.
+For a Rust runtime, we don't recommend a specific crate. Dealers choice.
 
 
 ### Arguments (Optional)
 Arguments can be used to provide operation and observation inputs during runtime.
 
-For example we might have a condition that is intended to measure "burning" a token. In most cases we could hard code the `0x0` address, but there might times when a custom address is desired and we don't want to create a new set.
+For example, we might have a condition that is intended to measure "burning" a token. In most cases, we could hard code the `0x0` address, but there might be times when a custom address is desired and we don't want to create a new set.
 
-For these instances we can use arguments to hydrate set condition and rule operation arguments, before comparing the set to state artifacts.
+For these instances, we can use arguments to hydrate set condition and rule operation arguments, before comparing the set to state artifacts.
 
 ```js
 // runtime arguments

@@ -83,7 +83,7 @@ Coming soon...
 
 ### Verifiable Credential
 
-Below is an an example of a verifiable credential artifact of type GMCredential.
+Below is an example of a verifiable credential artifact of type GMCredential.
 
 The `VerifiableCredential` artifact even includes a reference `DataSchema` entity in the `credentialSchema.id` field.
 

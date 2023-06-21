@@ -27,7 +27,7 @@ A `SmartContract` entity requires the `chainId`, `address` and `abi` fields.
 
 These fields are used to identify, locate and initialize a [state artifact](/architecture/state-artifacts) interpreter.
 
-Below is an an example of PoolTogether V4 PrizePool on the Optimism rollup. 
+Below is an example of PoolTogether V4 PrizePool on the Optimism rollup. 
 
 ```json
 // Smart Contracts

@@ -12,12 +12,12 @@ type Rule = {
 ```
 
 ### ID
-Unique identifier using the a URN pattern (e.x. rule:identification:property)
+Unique identifier using the URN pattern (e.x. rule:identification:property)
 
 ### Root
 The `root` boolean field designates an entry rule. **A set must have 1 or more root rules.**
 
-For example if 3 rules exist, but 1 of those rules is `oneOf` for the 2 other rules, the runtime needs to start at the root rule.
+For example, if 3 rules exist, but 1 of those rules is `oneOf` for the 2 other rules, the runtime needs to start at the root rule.
 
 The [Disco District Party Set]() set demonstrates this specific use case.
 
@@ -64,11 +64,11 @@ Logic branch operations for conditions and other rules
 }
 ```
 
-In the example above the Rule contains a `count` operation, which requires a minimum of number of the GMCredential to be available during runtime validation.
+In the example above the Rule contains a `count` operation, which requires a minimum number of the GMCredential to be available during runtime validation.
 
 Rules can also enforce logic branches on other Rules.
 
-Below is a relatively complex set defines several conditions and rules for an imagining District Disco Party. Stating that either a Membership and Ticket credential or VIP credential must be available during the runtime to pass validation.
+Below is a relatively complex set that defines several conditions and rules for an imagined District Disco Party. Stating that either a Membership and Ticket credential or VIP credential must be available during the runtime to pass validation.
 
 Simplified set statement `Membership + Ticket || Verified Identity Pass = True`
 

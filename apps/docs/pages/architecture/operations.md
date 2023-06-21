@@ -4,7 +4,7 @@ Conditions and Rules both contain operations.
 
 Operations are operators applied to entity artifacts and logic branching.
 
-They condition and rule operations are responsible for "constraining" what state you care about and describing desired state positions.
+The condition and rule operations are responsible for "constraining" what state you care about and describing desired state positions.
 
 ## EVM
 

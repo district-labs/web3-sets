@@ -2,7 +2,7 @@
 
 Rules are logic branches applied to Conditions and other Rules.
 
-- id - unique identifier using the a URN pattern (e.x. rule:identification:property)
+- id - unique identifier using the URN pattern (e.x. rule:identification:property)
 - root - status flag if the rule operation is an entry rule
 - operations - logic branches for conditions and other rules
 
@@ -80,7 +80,7 @@ In the example below the `all` rule operation is applied to the singular conditi
 
 Can you guess what will happen during runtime?
 
-The `all` operation checks if all of the `condition` is reference is satisfied.
+The `all` operation checks if all of the `condition` reference is satisfied.
 
 The `all` operator accepts a list condition or rule references, but since this set only contains a single condition and a single rule, we only pass in the single condition with the identifier `condition:depositTo`.
 

@@ -27,10 +27,10 @@ type Condition = {
 - observeOneOf([(key:String, operator: Operator, value: String | Number)])
 
 ### ID
-Unique identifier using the a URN pattern (e.x. condition:identification:property).
+Unique identifier using the URN pattern (e.x. condition:identification:property).
 
 ### Entity ID (eid)
-Target entity id to run condition condition operations on.
+Target entity id to run condition operations on.
 
 ### Operations
 Logic branch operations for conditions and other rules.
@@ -166,7 +166,7 @@ Example of observation of transaction input values with deeply nested values ins
             "observations": [
             {
                 "index": 0,
-                "condition": "==",
+                "condition": "eq",
                 "selector": "[0].invocations.batch[0].authority[0].delegation.caveats[0].terms",
                 "value": "0x0000000000000000000000000000000000000000000000000000000000000001"
             }
@@ -179,4 +179,4 @@ In the snippet above we reference a NFT smart contract that inherits the [delega
 
 A single condition operator states it wants to "observe" when a user executes the `invoke` function with a deeply nested value inside of an object, inside of a tuple.
 
-The value we're searching for `0x0000...00001` inside of the `terms` field describes specific permissions assigned to a user before transaction execution. The purpose of this example is to demonstrate we can observe very specific slice of data in a [state artifact](/architecture/state-artifacts.md). 
+The value we're searching for `0x0000...00001` inside of the `terms` field describes specific permissions assigned to a user before transaction execution. The purpose of this example is to demonstrate we can observe a very specific slice of data in a [state artifact](/architecture/state-artifacts.md). 

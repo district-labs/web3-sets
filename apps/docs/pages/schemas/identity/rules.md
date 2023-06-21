@@ -2,7 +2,7 @@
 
 Rules are logic branches applied to Conditions and other Rules.
 
-- id - unique identifier using the a URN pattern (e.x. rule:identification:property)
+- id - unique identifier using the URN pattern (e.x. rule:identification:property)
 - root - status flag if the rule operation is an entry rule
 - operations - logic branches for conditions and other rules
 
@@ -64,7 +64,7 @@ In the example below the `all` rule operation is applied to the singular conditi
             },
             {
                 "method": "observe",
-                "args": ["credentialSubject.membershipLevel", ">=", "5"]
+                "args": ["credentialSubject.membershipLevel", "gte", "5"]
             }
         ]
     }
@@ -85,15 +85,15 @@ In the example below the `all` rule operation is applied to the singular conditi
 
 Can you guess what will happen during runtime?
 
-The `all` operation checks if all of the `condition` is reference is satisfied. In this case we're checking to see if the `membershipLevel` field has a value greater than 5.
+The `all` operation checks if all of the `condition` is reference is satisfied. In this case, we're checking to see if the `membershipLevel` field has a value greater than 5.
 
 The `all` operator accepts a list condition or rule references, but since this set only contains a single condition and a single rule, we only pass in the single condition with the identifier `condition:membership:issuance`.
 
 ## Rule Recursion
 
-Rules can also reference other rules. Which is why a set must contain at-least 1 rule with `root` set to `true`, because the runtime engine needs to know which rule(s) to start traversing operations from.
+Rules can also reference other rules. This is why a set must contain at least 1 rule with `root` set to `true`, because the runtime engine needs to know which rule(s) to start traversing operations from.
 
-Below is an example of set the describes requiring presenting a Membership/Ticket or a Verified Identity Pass. A set like this is useful for programmatically requesting a verifiable presentation from a user at an event. If either condition is met, than the guest can enter the event. And if no conditions are met it means they were not invited.
+Below is an example of set that describes requiring presenting a Membership/Ticket or a Verified Identity Pass. A set like this is useful for programmatically requesting a verifiable presentation from a user at an event. If either condition is met, then the guest can enter the event. And if no conditions are met it means they were not invited.
 
 ```json
 "entities": [
@@ -192,6 +192,6 @@ As we can see the set contains several rules:
 - rule:district-member-with-ticket
 - rule:district-member-with-vip
 
-The `rule:base` rule references the two other rules. And is why it's marked as the root.
+The `rule:base` rule references the two other rules. That is why it's marked as the root.
 
 The rules state that if either `rule:district-member-with-ticket` or the `rule:district-member-with-vip` rule can be satisfied, the set will validate.

@@ -3,7 +3,7 @@
 ## Hydration
 Before the set is compared to state artifacts it first undergoes hydration.
 
-Entity hydration is required for fetching external interface, like smart contract application binary interfaces and verifiable credential schemas.
+Entity hydration is required for fetching external interfaces, like smart contract application binary interfaces and verifiable credential schemas.
 
 ```ts
 export const EVMSetHydrated = {
@@ -282,4 +282,4 @@ After the artifacts have been added to the new Entity object being hydrated, raw
 }
 ```
 
-Once hydration occurs, and state artifacts parsed, condition and rules operations can be applied.
+Once hydration occurs, and state artifacts are parsed, condition and rules operations can be applied.
