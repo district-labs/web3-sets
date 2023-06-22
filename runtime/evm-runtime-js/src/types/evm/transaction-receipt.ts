@@ -3,29 +3,30 @@ import { z } from 'zod'
 export const TransactionReceipt = z.object({
   blockHash: z.string().nullable(),
   blockNumber: z.string().nullable(),
-  transactionHash: z.string(),
+  hash: z.string(),
   transactionIndex: z.string().nullable(),
   from: z.string(),
   to: z.string().nullable(),
   cumulativeGasUsed: z.string(),
   gasUsed: z.string(),
   contractAddress: z.string().nullable(),
-  logs: z.array(
-    z.object({
-      address: z.string(),
-      topics: z.array(z.string()),
-      data: z.string(),
-    }),
-  ),
+  logs: z
+    .array(
+      z.object({
+        address: z.string(),
+        topics: z.array(z.string()),
+        data: z.string(),
+      }),
+    )
+    .optional(),
   status: z.string(),
   gas: z.string(),
-  hash: z.string(),
   input: z.string(),
   nonce: z.string(),
-  r: z.string(),
-  s: z.string(),
-  typeHex: z.string().nullable(),
-  v: z.string(),
+  r: z.string().optional(),
+  s: z.string().optional(),
+  v: z.string().optional(),
+  typeHex: z.string().optional(),
   value: z.string(),
 })
 

@@ -37,7 +37,7 @@ export type EntityHydrated = {
   id: String
   address: Address
   chainId: Number
-  abi: Abi
+  abi: string | Abi
   conditions: Condition[]
   artifacts: EVMArtifacts
   matches: EVMArtifactMatches

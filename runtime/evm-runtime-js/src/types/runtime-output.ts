@@ -1,42 +1,56 @@
 import { z } from 'zod'
 
-const transaction = z.object({
+export const TransactionOrReceiptConditionOperationMatch = z.object({
   opidx: z.number(),
   hash: z.string(),
 })
 
-const artifact = z.object({
-  transactions: z.array(transaction),
-})
+export type TransactionOrReceiptConditionOperationMatch = z.infer<
+  typeof TransactionOrReceiptConditionOperationMatch
+>
 
-const condition = z.object({
+export const ConditionOperationArtifactRef = z.object({
+  id: z.string(),
+  reference: z.string(),
+})
+export type ConditionOperationArtifactRef = z.infer<
+  typeof ConditionOperationArtifactRef
+>
+
+export const ConditionOperationResults = z.object({
   cid: z.string(),
   operations: z.array(
     z.object({
       status: z.boolean(),
+      artifacts: z.array(ConditionOperationArtifactRef),
       metadata: z.unknown(),
     }),
   ),
-  artifacts: artifact,
 })
+export type ConditionOperationResults = z.infer<
+  typeof ConditionOperationResults
+>
 
-const entity = z.object({
+export const ConditionOperationsGroupedByEntityRef = z.object({
   id: z.string(),
   status: z.boolean(),
-  conditions: z.array(condition),
+  conditions: z.array(ConditionOperationResults),
 })
+export type ConditionOperationsGroupedByEntityRef = z.infer<
+  typeof ConditionOperationsGroupedByEntityRef
+>
 
-const rule = z.object({
+export const RuleOperationResults = z.object({
   id: z.string(),
   status: z.boolean(),
 })
+export type RuleOperationResults = z.infer<typeof RuleOperationResults>
 
 export const RuntimeOutput = z.object({
   status: z.boolean(),
   results: z.object({
-    entities: z.array(entity),
-    rules: z.array(rule),
+    entities: z.array(ConditionOperationsGroupedByEntityRef),
+    rules: z.array(RuleOperationResults),
   }),
 })
-
 export type RuntimeOutput = z.infer<typeof RuntimeOutput>

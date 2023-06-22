@@ -16,8 +16,13 @@ export default defineConfig({
       fileName: (format) => `evm-runtime.${format}.js`,
     },
     rollupOptions: {
-      external: ['abitype', 'abitype/zod'],
-      output: {},
+      // external: ['abitype', 'abitype/zod'],
+      // output: {
+      //   globals: {
+      //     abitype: 'abitype',
+      //     'abitype/zod': 'abitypeZod',
+      //   },
+      // },
     },
   },
 })

@@ -8,10 +8,10 @@ import { decodeFunctionData } from 'viem'
 
 interface Input {
   set: SetHydrated
-  state: EVMStateArtifacts
+  artifacts: EVMStateArtifacts
 }
 
-export function injectState({ set, state }: Input): SetHydrated {
+export function injectArtifacts({ set, artifacts }: Input): SetHydrated {
   const set_new = { ...set }
 
   // Loop through each entity in the set.
@@ -23,19 +23,19 @@ export function injectState({ set, state }: Input): SetHydrated {
     // Filter the state for transactions and receipts that match the entity address.
     set_new.entities[index].artifacts.raw = {
       // Transactions are filtered by the `to` field for contract transactions.
-      transactions: state?.transactions?.filter(
+      transactions: artifacts?.transactions?.filter(
         (_transaction: Transaction) =>
           _transaction.to?.toLowerCase() ===
           set_new.entities[index].address.toLowerCase(),
       ),
       // Receipts are filtered by the `to` field for contract transactions.
-      receipts: state?.receipts?.filter(
+      receipts: artifacts?.receipts?.filter(
         (_receipt: TransactionReceipt) =>
           _receipt.to?.toLowerCase() ===
           set_new.entities[index].address.toLowerCase(),
       ),
       // Logs are filtered by the `address` field for contract events.
-      logs: state?.logs?.filter(
+      logs: artifacts?.logs?.filter(
         (_log: any) =>
           _log.address?.toLowerCase() ===
           set_new.entities[index].address.toLowerCase(),

@@ -1,6 +1,4 @@
-export function checkIfAllRuleOpereationsAreSuccess(
-  array: Array<Array<boolean>>,
-) {
+export function checkIfAllRuleOpereationsAreSuccess(array: boolean[][]) {
   for (let i = 0; i < array.length; i++) {
     if (!Array.isArray(array[i])) {
       return false // If any element is not an array, return false

@@ -1,3 +1,5 @@
+import { applyConditionOperations } from './apply-condition-operations'
+import { debugRuntime } from './debug'
 import { hydrateSet } from './hydrate'
 import { injectArtifacts } from './inject-artifacts'
 import { RuntimeInput, RuntimeOutput } from './types'
@@ -8,7 +10,7 @@ import { RuntimeInput, RuntimeOutput } from './types'
  */
 export async function runtime({
   set,
-  state,
+  artifacts,
   clients,
   args,
 }: RuntimeInput): Promise<RuntimeOutput | void> {
@@ -20,6 +22,14 @@ export async function runtime({
   // 4. Inject EVM artifacts into hydrated Entities.
   const _set_hydrated_with_artifacts = injectArtifacts({
     set: set_hydrated,
-    state,
+    artifacts,
   })
+
+  debugRuntime(_set_hydrated_with_artifacts)
+
+  const _set_hydrated_with_artifacts_and_conditions = applyConditionOperations(
+    _set_hydrated_with_artifacts,
+  )
+
+  // console.log(_set_hydrated_with_artifacts)
 }

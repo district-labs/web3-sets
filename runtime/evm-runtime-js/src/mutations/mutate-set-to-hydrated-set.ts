@@ -1,5 +1,5 @@
 import { EVMSet, EntityHydrated, SetHydrated } from '../types'
-import { Condition } from '@/types/set/condition'
+import { Condition } from '../types/set/condition'
 import { Client } from 'viem'
 
 /**
@@ -26,7 +26,7 @@ export function mutateSetToHydratedSet(
       chainId: set.entities[index].chainId,
       abi: set.entities[index].abi,
       conditions: conditions?.filter(
-        (condition: Condition) => condition.eid === set.entities[index].address,
+        (condition: Condition) => condition.eid === set.entities[index].id,
       ),
       artifacts: {
         raw: {
