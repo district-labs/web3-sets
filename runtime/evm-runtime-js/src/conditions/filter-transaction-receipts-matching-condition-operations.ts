@@ -1,20 +1,18 @@
-import {
-  TransactionParsed,
-  TransactionReceiptMatch,
-  TransactionReceiptParsed,
-} from '..'
+import { ConditionOperationResults, ConditionResult, Transaction } from '..'
 import { Condition } from '../types/set/condition'
-import compareConditionOperationsToDecodedTransactionData from './compare-condition-operations-to-decoded-transaction-data'
+import { compareConditionOperationToDecodedTransactionData } from './compare-condition-operation-to-decoded-transaction-data'
 
 export function filterTransactionReceiptsMatchingConditionOperations({
   condition,
-  receipts,
+  transactions,
 }: {
   condition: Condition
-  receipts?: TransactionReceiptParsed[]
-}): TransactionReceiptMatch[] {
-  if (!receipts) {
-    return []
+  transactions?: Transaction[]
+}): ConditionResult {
+  if (!transactions) {
+    throw new Error(
+      'filterTransactionReceiptsMatchingConditionOperations requires transactions',
+    )
   }
   // Web3 Sets use a function with a signature like:
   // `set(uint256, bool)`
@@ -23,22 +21,55 @@ export function filterTransactionReceiptsMatchingConditionOperations({
   // part of the string.
   // When we use viem.decodeFunctionData to parse the transaction
   // data, we get a `functionName` property that is just the function name.
+  const conditionOperationResults = {
+    cid: condition.id,
+    status: false,
+    operations: [] as ConditionOperationResults[],
+  } as ConditionResult
+
   const conditionFunctionName = condition?.signature.split('(')[0]
-  const filtered = receipts
-    .map((tx: TransactionParsed) => {
-      console.log(tx?.args, tx.functionName)
-      if (tx?.args && tx.functionName === conditionFunctionName) {
-        const _comparator = compareConditionOperationsToDecodedTransactionData(
-          tx,
-          condition.operations,
-        )
-        return true
-      } else {
-        return null
-      }
+
+  for (let index = 0; index < condition.operations.length; index++) {
+    const _condition_operation = condition.operations[index]
+
+    const _filtered = transactions
+      .map((tx: Transaction) => {
+        if (
+          tx?.decoded?.args &&
+          tx?.decoded?.functionName === conditionFunctionName
+        ) {
+          const _comparator = compareConditionOperationToDecodedTransactionData(
+            tx,
+            _condition_operation,
+          )
+          if (_comparator) {
+            return {
+              id: tx.hash,
+              reference: 'transaction',
+            }
+          } else {
+            return null
+          }
+        } else {
+          return null
+        }
+      })
+      .filter((tx) => tx !== null)
+    // console.log(_filtered, '_filtered')
+
+    conditionOperationResults.operations.push({
+      status: _filtered.length > 0,
+      // @ts-ignore
+      artifacts: _filtered || [],
     })
-    .filter((tx) => tx !== null)
+  }
 
   // @ts-ignore
-  return filtered
+  return {
+    cid: condition.id,
+    status: conditionOperationResults.operations.every(
+      (operation) => operation.status === true,
+    ),
+    operations: conditionOperationResults.operations,
+  }
 }

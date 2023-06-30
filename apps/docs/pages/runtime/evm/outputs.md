@@ -46,7 +46,7 @@ type RuleOperationResults = {
 {
 	entities: [
 		{
-      id: "pooltogether:v4:prizepool:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:optimism",
+      id: "pooltogether:v4:prizepool",
 			chainId: 10,
 			address: "0x79bc8bd53244bc8a9c8c27509a2d573650a83373",
 			abi: "ipfs://Qmc6MHybup7ppGgUdyEcsi5jqCeTAPtcxF9wBaco56Uc1H"
@@ -54,7 +54,7 @@ type RuleOperationResults = {
 	],
 	conditions: [
 		{
-			id: "condition:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:depositTo:gte:100000000",
+			id: "condition:depositTo",
 			eid: "0x79bc8bd53244bc8a9c8c27509a2d573650a83373",
 			type: "transaction",
 			signature: "depositTo(address,uint256)",
@@ -73,7 +73,7 @@ type RuleOperationResults = {
 				{
 					method: "all",
 					args: [
-						"condition:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:depositTo:gte:100000000"
+						"condition:depositTo"
 					]
 				},
 			]
@@ -120,23 +120,23 @@ type RuleOperationResults = {
   results: {
     entities: [
       {
-        id: "pooltogether:v4:prizepool:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:optimism",
+        id: "pooltogether:v4:prizepool",
         status: true,
         conditions: [
           {
-            cid: "condition:0x79bc8bd53244bc8a9c8c27509a2d573650a83373:depositTo:gte:100000000"
+            cid: "condition:depositTo"
             operations: [
-              status: true,
-              metadata: {} // Runtime specific. Different operators will want attach different artifact operation metadata.
+              {
+                status: true,
+                metadata: {} // Runtime specific. Different operators might want to attach different artifact operation metadata.
+                artifacts: [
+                    {
+                      id: "0xb1aa4eb5937d7599f246cd35998dc22ad0acc8fbf8577a847a29f75f269ac891"
+                      reference: "transaction"
+                    }
+                  ]
+              }
             ]
-            artifacts: {
-              transactions: [
-                {
-                  opidx: 0, // operation index
-                  hash: "0xb1aa4eb5937d7599f246cd35998dc22ad0acc8fbf8577a847a29f75f269ac891"
-                }
-              ]
-            }
           }
         ]
       }
@@ -144,7 +144,20 @@ type RuleOperationResults = {
     rules: [
       {
         id: "rule:all",
-        status: true
+        status: true,
+        root: true,
+        operations: [
+          {
+            status: true,
+            method: 'all',
+            references: [
+              {
+                id: 'condition:depositTo',
+                reference: "condition"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

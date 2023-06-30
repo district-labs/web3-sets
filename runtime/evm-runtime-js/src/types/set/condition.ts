@@ -16,6 +16,7 @@ export const ConditionOperation = z.object({
     'value',
   ]),
   args: z.array(z.any()),
+  type: z.string().optional(), // address, bytes32, uint256, etc...
 })
 
 export type ConditionOperation = z.infer<typeof ConditionOperation>

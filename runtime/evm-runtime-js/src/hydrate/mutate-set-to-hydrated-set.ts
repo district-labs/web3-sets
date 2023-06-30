@@ -7,7 +7,6 @@ import { Client } from 'viem'
  */
 export function mutateSetToHydratedSet(
   set: EVMSet,
-  conditions: Condition[],
   clients?: Client[],
 ): SetHydrated {
   // Create a hydrated set object.
@@ -25,20 +24,14 @@ export function mutateSetToHydratedSet(
       address: set.entities[index].address,
       chainId: set.entities[index].chainId,
       abi: set.entities[index].abi,
-      conditions: conditions?.filter(
+      conditions: set.conditions?.filter(
         (condition: Condition) => condition.eid === set.entities[index].id,
       ),
       artifacts: {
-        raw: {
-          transactions: [],
-          receipts: [],
-          logs: [],
-        },
-        parsed: {
-          transactions: [],
-          receipts: [],
-          logs: [],
-        },
+        state: 'raw',
+        transactions: [],
+        receipts: [],
+        logs: [],
       },
       matches: {
         transactions: [],

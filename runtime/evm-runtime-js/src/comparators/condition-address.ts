@@ -1,3 +1,5 @@
+import { getAddress } from 'viem'
+
 export function conditionString(
   condition: string,
   operation_argument: string,
@@ -5,9 +7,9 @@ export function conditionString(
 ) {
   switch (condition) {
     case 'eq':
-      return operation_argument === artifact_value
+      return getAddress(operation_argument) === getAddress(artifact_value)
     case '!eq':
-      return operation_argument !== artifact_value
+      return getAddress(operation_argument) !== getAddress(artifact_value)
     default:
       return false
   }

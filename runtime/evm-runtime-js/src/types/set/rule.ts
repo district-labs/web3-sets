@@ -14,6 +14,7 @@ export const RuleOperation = z.object({
   ]),
   args: z.array(z.any()),
 })
+export type RuleOperation = z.infer<typeof RuleOperation>
 
 export const Rule = z.object({
   id: z.string(),

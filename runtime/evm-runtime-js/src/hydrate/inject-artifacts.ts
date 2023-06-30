@@ -1,9 +1,4 @@
-import {
-  EVMStateArtifacts,
-  SetHydrated,
-  Transaction,
-  TransactionReceipt,
-} from './types'
+import { EVMStateArtifacts, SetHydrated, Transaction } from '../types'
 import { decodeFunctionData } from 'viem'
 
 interface Input {
@@ -21,17 +16,12 @@ export function injectArtifacts({ set, artifacts }: Input): SetHydrated {
   // Finally, add the decoded function data to the entity's artifacts.
   for (let index = 0; index < set_new.entities.length; index++) {
     // Filter the state for transactions and receipts that match the entity address.
-    set_new.entities[index].artifacts.raw = {
+    set_new.entities[index].artifacts = {
+      state: 'raw',
       // Transactions are filtered by the `to` field for contract transactions.
       transactions: artifacts?.transactions?.filter(
         (_transaction: Transaction) =>
           _transaction.to?.toLowerCase() ===
-          set_new.entities[index].address.toLowerCase(),
-      ),
-      // Receipts are filtered by the `to` field for contract transactions.
-      receipts: artifacts?.receipts?.filter(
-        (_receipt: TransactionReceipt) =>
-          _receipt.to?.toLowerCase() ===
           set_new.entities[index].address.toLowerCase(),
       ),
       // Logs are filtered by the `address` field for contract events.
@@ -43,34 +33,23 @@ export function injectArtifacts({ set, artifacts }: Input): SetHydrated {
     }
 
     // Decode the function data for each artifact type.
-    set_new.entities[index].artifacts.parsed = {
-      receipts: set_new.entities[index].artifacts?.raw?.receipts?.map(
+    set_new.entities[index].artifacts = {
+      state: 'decoded',
+      transactions: set_new.entities[index].artifacts?.transactions?.map(
         (tx: any) => {
-          const decoded = decodeFunctionData({
-            abi: set_new.entities[index].abi,
-            data: tx.data || tx.input, // Support for Default and Etherscan API transaction objects
-          })
-
-          // Return the TransactionReceiptParsed object.
-          return {
-            hash: tx.hash,
-            args: decoded.args,
-            functionName: decoded.functionName,
+          if (typeof set_new.entities[index].abi === 'string') {
+            throw new Error('ABI must be an object')
           }
-        },
-      ),
-      transactions: set_new.entities[index].artifacts?.raw?.transactions?.map(
-        (tx: any) => {
           const decoded = decodeFunctionData({
+            // @ts-ignore
             abi: set_new.entities[index].abi,
-            data: tx.data || tx.input, // Support for Default and Etherscan API transaction objects
+            data: tx.data || tx.input,
           })
 
           // Return the TransactionParsed object.
           return {
-            hash: tx.hash,
-            args: decoded.args,
-            functionName: decoded.functionName,
+            ...tx,
+            decoded: decoded,
           }
         },
       ),

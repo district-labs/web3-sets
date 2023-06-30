@@ -1,13 +1,8 @@
-import { Log, LogMatch, LogParsed } from './evm/log'
-import {
-  Transaction,
-  TransactionMatch,
-  TransactionParsed,
-} from './evm/transaction'
+import { Log, LogMatch } from './evm/log'
+import { Transaction, TransactionMatch } from './evm/transaction'
 import {
   TransactionReceipt,
   TransactionReceiptMatch,
-  TransactionReceiptParsed,
 } from './evm/transaction-receipt'
 import { Condition } from './set/condition'
 import { Rule } from './set/rule'
@@ -15,16 +10,10 @@ import { Abi } from 'abitype'
 import { Address, Client } from 'viem'
 
 type EVMArtifacts = {
-  raw: {
-    transactions?: Transaction[]
-    receipts?: TransactionReceipt[]
-    logs?: Log[]
-  }
-  parsed: {
-    transactions?: TransactionParsed[]
-    receipts?: TransactionReceiptParsed[]
-    logs?: LogParsed[]
-  }
+  state: 'raw' | 'decoded'
+  transactions?: Transaction[]
+  receipts?: TransactionReceipt[]
+  logs?: Log[]
 }
 
 type EVMArtifactMatches = {

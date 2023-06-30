@@ -17,6 +17,8 @@ export async function hydrateReferenceObjects(set: EVMSet): Promise<EVMSet> {
     // The ABI can be a string or an ABI array.
     // If it's a string, it's a URI to an ABI file.
     // If it's an ABI array, it's already hydrated.
+    // TODO: Support all URI schemes, not just IPFS.
+    // TODO: Use abitype to validate the ABI.
     if (typeof entity.abi === 'string' && entity.abi.startsWith('ipfs://')) {
       const abi = await fetchAbiFromUri(entity.abi)
       if (abi) {

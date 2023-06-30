@@ -21,24 +21,24 @@
     {
       "id": "condition:depositTo:gte:100000000",
       "eid": "entity:pooltogether:v4:prizepool",
-      "type": "receipt",
+      "type": "transaction",
       "signature": "depositTo(address,uint256)",
       "operations": [
         {
           "method": "observe",
-          "args": [1, "gte", "100000000"]
+          "args": [1, "gte", "10000000"]
         }
       ]
     },
     {
       "id": "condition:depositToAndDelegate:gte:100000000",
       "eid": "entity:pooltogether:v4:prizepool",
-      "type": "receipt",
+      "type": "transaction",
       "signature": "depositToAndDelegate(address,uint256,address)",
       "operations": [
         {
           "method": "observe",
-          "args": [1, "gte", "100000000"]
+          "args": [1, "gte", "10000000"]
         }
       ]
     }

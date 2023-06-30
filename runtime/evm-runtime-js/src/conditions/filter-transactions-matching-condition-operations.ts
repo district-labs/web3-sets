@@ -2,8 +2,8 @@ import {
   TransactionParsed,
   TransactionReceiptMatch,
   TransactionReceiptParsed,
-} from '..'
-import compareConditionOperationsToDecodedTransactionData from './compare-condition-operations-to-decoded-transaction-data'
+} from '../types'
+import { compareConditionOperationToDecodedTransactionData } from 'src/conditions/compare-condition-operation-to-decoded-transaction-data'
 
 export function filterTransactionsMatchingConditions({
   condition,
@@ -26,7 +26,8 @@ export function filterTransactionsMatchingConditions({
   const filtered = transactions
     .map((tx: TransactionParsed) => {
       if (tx?.args && tx.functionName === conditionFunctionName) {
-        const _comparator = compareConditionOperationsToDecodedTransactionData(
+        const _comparator = compareConditionOperationToDecodedTransactionData(
+          // @ts-ignore
           tx,
           condition.operations,
         )

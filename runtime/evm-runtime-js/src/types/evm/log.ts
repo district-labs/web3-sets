@@ -10,6 +10,14 @@ export const Log = z.object({
   topics: z.array(z.string()),
   transactionHash: z.string(),
   logIndex: z.number(),
+  decoded: z
+    .object({
+      name: z.string(),
+      signature: z.string(),
+      topic: z.string(),
+      args: z.unknown(),
+    })
+    .optional(),
 })
 
 export type Log = z.infer<typeof Log>
