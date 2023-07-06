@@ -1516,6 +1516,9 @@ importers:
       '@veramo/did-provider-ethr':
         specifier: ^5.1.2
         version: 5.1.2
+      '@veramo/did-provider-web':
+        specifier: ^5.1.2
+        version: 5.1.2
       '@veramo/did-resolver':
         specifier: ^5.2.0
         version: 5.2.0
@@ -2191,13 +2194,13 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.18.5
-      '@babel/helper-annotate-as-pure': 7.18.6
+      '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-environment-visitor': 7.22.5
       '@babel/helper-function-name': 7.22.5
       '@babel/helper-member-expression-to-functions': 7.21.0
-      '@babel/helper-optimise-call-expression': 7.18.6
-      '@babel/helper-replace-supers': 7.20.7
-      '@babel/helper-skip-transparent-expression-wrappers': 7.20.0
+      '@babel/helper-optimise-call-expression': 7.22.5
+      '@babel/helper-replace-supers': 7.22.5
+      '@babel/helper-skip-transparent-expression-wrappers': 7.22.5
       '@babel/helper-split-export-declaration': 7.22.6
     transitivePeerDependencies:
       - supports-color
@@ -2402,12 +2405,6 @@ packages:
       '@babel/types': 7.22.5
     transitivePeerDependencies:
       - supports-color
-
-  /@babel/helper-optimise-call-expression@7.18.6:
-    resolution: {integrity: sha512-HP59oD9/fEHQkdcbgFCnbmgH5vIQTJbxh2yf+CdM89/glUNnuzr87Q8GIjGEnOktTROemO0Pe0iPAYbqZuOUiA==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.22.5
 
   /@babel/helper-optimise-call-expression@7.22.5:
     resolution: {integrity: sha512-HBwaojN0xFRx4yIvpwGqxiV2tUfl7401jlok564NgB9EHS1y6QT17FmKWm4ztqjeVdXLuC4fSvHc5ePpQjoTbw==}
@@ -4842,7 +4839,7 @@ packages:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@17.0.31)(typescript@4.9.4)
+      ts-node: 10.9.1(@types/node@17.0.45)(typescript@4.9.5)
       typescript: 4.9.5
     transitivePeerDependencies:
       - '@swc/core'
@@ -13896,6 +13893,16 @@ packages:
       - web-streams-polyfill
     dev: true
 
+  /@veramo/did-provider-web@5.1.2:
+    resolution: {integrity: sha512-5ZwgQgIfkQFJy6n4+o7nsPRvbWTP65O4ErxMZIQeGhYVcGr5Q6MJk9g+A4bGy/jdJEKzyzD7e1XWcjxJTPJT2w==}
+    dependencies:
+      '@veramo/core-types': 5.1.2
+      '@veramo/did-manager': 5.1.2
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /@veramo/did-resolver@5.2.0:
     resolution: {integrity: sha512-yENN0vw/iGlQ3otsiMYBB5DMhbBOGNBvqkvjmjFRDFmm1VjvXl87ANQKhbO/bXQUkYJqO9qUJF1cf03DwrlCQg==}
     dependencies:
@@ -18233,7 +18240,7 @@ packages:
     dependencies:
       '@types/node': 17.0.45
       cosmiconfig: 8.0.0
-      ts-node: 10.9.1(@types/node@17.0.31)(typescript@4.9.4)
+      ts-node: 10.9.1(@types/node@17.0.45)(typescript@4.9.5)
       typescript: 4.9.5
     dev: true
 
@@ -36163,7 +36170,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.23)(ts-node@10.9.1)
+      postcss-load-config: 3.1.4(postcss@8.4.19)(ts-node@10.9.1)
       resolve-from: 5.0.0
       rollup: 3.20.7
       source-map: 0.8.0-beta.0
